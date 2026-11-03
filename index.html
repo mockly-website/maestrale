@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maestrale — boutique di abbigliamento (demo)</title>
+<meta name="description" content="Lino, seta e cotone leggero. Capi nuovi ogni martedì, pochi pezzi per taglia. Demo di una boutique realizzata da Mockly: attività, prezzi e orari inventati.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Maestrale (demo di Mockly)">
+<meta property="og:title" content="Maestrale — boutique di abbigliamento (demo)">
+<meta property="og:description" content="Lino, seta e cotone leggero. Capi nuovi ogni martedì, pochi pezzi per taglia. Demo di una boutique realizzata da Mockly: attività, prezzi e orari inventati.">
+<meta property="og:image" content="assets/img/anteprima-social.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Maestrale: abito lungo azzurro mosso dal vento e la scritta Vestiti che prendono vento">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/eroe-800.webp" imagesrcset="assets/img/eroe-480.webp 480w, assets/img/eroe-800.webp 800w, assets/img/eroe-1200.webp 1200w, assets/img/eroe-1600.webp 1600w" imagesizes="(min-width: 64em) 50vw, 100vw" fetchpriority="high">
+<link rel="stylesheet" href="assets/css/style.css?v=1793732923">
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="home" class="has-thumbbar">
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+<header class="header">
+  <a class="logo" href="index.html">Maestrale<span class="logo__mark" aria-hidden="true"></span></a>
+  <nav class="nav" aria-label="Principale"><a href="collezione.html">Collezione</a><a href="index.html#look">Il look</a><a href="index.html#negozio">In negozio</a><a href="index.html#visita">Orari e dove</a></nav>
+  <div class="header__tools">
+    <a class="icon-btn" href="carrello.html"><span class="sr-only">Carrello, capi:</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" data-cart-count data-n="0">0</span></a>
+    <button class="icon-btn menu-btn" type="button" aria-controls="menu" aria-expanded="false" data-open><span class="label">Menu</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h18M3 16h18"/></svg></button>
+  </div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" inert data-inert-closed>
+  <div class="menu__bar"><span class="eyebrow">Menu</span><button class="icon-btn" type="button" data-close aria-label="Chiudi il menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+  <ul class="menu__list"><li><a href="collezione.html">Collezione<small>01</small></a></li><li><a href="index.html#look">Il look<small>02</small></a></li><li><a href="index.html#negozio">In negozio<small>03</small></a></li><li><a href="index.html#visita">Orari e dove<small>04</small></a></li></ul>
+  <div class="menu__foot">
+    <p>Via dell'Esempio 1 · martedì arrivano i capi nuovi</p>
+    <a class="btn" data-wa="[DEMO — sito dimostrativo di Mockly, la boutique Maestrale è inventata]\nCiao! Vorrei un'informazione sui capi." href="https://wa.me/393517578080"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Scrivici su WhatsApp</a>
+  </div>
+</div>
+
+<main id="contenuto">
+
+  <!-- Prima schermata -->
+  <section class="hero" aria-labelledby="titolo">
+    <div class="hero__media wind">
+      <img src="assets/img/eroe-800.webp" srcset="assets/img/eroe-480.webp 480w, assets/img/eroe-800.webp 800w, assets/img/eroe-1200.webp 1200w, assets/img/eroe-1600.webp 1600w" sizes="(min-width: 64em) 50vw, 100vw" width="1600" height="2000" alt="Una donna di spalle cammina in riva al mare con un abito lungo azzurro e il cappello, la gonna gonfiata dal vento" fetchpriority="high">
+    </div>
+    <a class="hero__tag" href="prodotto.html?id=abito-lungo-cala"><span>Nella foto: <b>Abito lungo Cala</b> · 129 €</span></a>
+    <h1 class="hero__title display" id="titolo"><span class="hl"><span>Vestiti</span></span><span class="hl"><span>che prendono</span></span><span class="hl"><span class="accent">vento.</span></span></h1>
+    <div class="hero__body">
+      <p class="lead">Lino, seta e cotone leggero. I capi nuovi arrivano il martedì, e per ogni taglia ce ne sono pochi.</p>
+      <div class="hero__actions">
+        <a class="btn btn--accent" href="collezione.html">Guarda la collezione <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="link" href="#visita">Orari e dove siamo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Arrivati martedì -->
+  <section class="section wrap" id="arrivi" aria-labelledby="t-arrivi">
+    <div class="section-head reveal">
+      <h2 class="display" id="t-arrivi">Arrivati<br>martedì</h2>
+      <a class="link" href="collezione.html">Tutti i 18 capi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <ul class="grid">
+<li class="card card--big reveal" data-id="abito-schiena-incrociata" data-colore="bianco" data-taglie="S M L XL" data-prezzo="98" data-nuovo="1"><a class="card__link" href="prodotto.html?id=abito-schiena-incrociata"><div class="card__media wind"><img src="assets/img/abito-bianco-800.webp" srcset="assets/img/abito-bianco-400.webp 400w, assets/img/abito-bianco-800.webp 800w, assets/img/abito-bianco-1200.webp 1200w" sizes="(min-width: 90em) 40vw, (min-width: 64em) 50vw, (min-width: 48em) 66vw, 100vw" width="1200" height="1500" alt="Abito bianco con la schiena incrociata, indossato in riva al mare, visto di spalle" loading="lazy" decoding="async"><span class="card__badge">Arrivato martedì</span></div><div class="card__info"><h3 class="card__name">Abito schiena incrociata</h3><span class="card__price">98 €</span><p class="card__sizes"><span class="sr-only">Colore bianco. Taglie disponibili: S, M, L, XL</span><span aria-hidden="true"><s>XS</s> S M L XL</span></p></div></a></li>
+<li class="card reveal" data-id="camicia-lino-coreana" data-colore="bianco" data-taglie="XS S M L XL" data-prezzo="79" data-nuovo="1"><a class="card__link" href="prodotto.html?id=camicia-lino-coreana"><div class="card__media wind"><img src="assets/img/camicia-lino-800.webp" srcset="assets/img/camicia-lino-400.webp 400w, assets/img/camicia-lino-800.webp 800w, assets/img/camicia-lino-1200.webp 1200w" sizes="(min-width: 90em) 20vw, (min-width: 64em) 25vw, (min-width: 48em) 33vw, 50vw" width="1200" height="1500" alt="Camicia in lino color naturale con collo coreano, appesa a una gruccia di legno" loading="lazy" decoding="async"><img class="alt" src="assets/img/camicia-lino-2-800.webp" srcset="assets/img/camicia-lino-2-400.webp 400w, assets/img/camicia-lino-2-800.webp 800w, assets/img/camicia-lino-2-1200.webp 1200w" sizes="(min-width: 90em) 20vw, (min-width: 64em) 25vw, (min-width: 48em) 33vw, 50vw" width="1200" height="1500" alt="" loading="lazy" decoding="async"><span class="card__badge">Arrivato martedì</span></div><div class="card__info"><h3 class="card__name">Camicia in lino collo coreano</h3><span class="card__price">79 €</span><p class="card__sizes"><span class="sr-only">Colore bianco. Taglie disponibili: XS, S, M, L, XL</span><span aria-hidden="true">XS S M L XL</span></p></div></a></li>
+<li class="card reveal" data-id="foulard-seta-mimosa" data-colore="giallo" data-taglie="Unica" data-prezzo="45" data-nuovo="1"><a class="card__link" href="prodotto.html?id=foulard-seta-mimosa"><div class="card__media wind"><img src="assets/img/foulard-giallo-800.webp" srcset="assets/img/foulard-giallo-400.webp 400w, assets/img/foulard-giallo-800.webp 800w, assets/img/foulard-giallo-1200.webp 1200w" sizes="(min-width: 90em) 20vw, (min-width: 64em) 25vw, (min-width: 48em) 33vw, 50vw" width="1200" height="1500" alt="Foulard in seta giallo annodato su una camicia bianca" loading="lazy" decoding="async"><span class="card__badge card__badge--last">Ultimo pezzo</span></div><div class="card__info"><h3 class="card__name">Foulard in seta Mimosa</h3><span class="card__price">45 €</span><p class="card__sizes"><span class="sr-only">Colore giallo. Taglie disponibili: Unica</span><span aria-hidden="true">Unica</span></p></div></a></li>
+<li class="card reveal" data-id="abito-plisse-spuma" data-colore="azzurro" data-taglie="S M" data-prezzo="145" data-nuovo="1"><a class="card__link" href="prodotto.html?id=abito-plisse-spuma"><div class="card__media wind"><img src="assets/img/abito-plisse-800.webp" srcset="assets/img/abito-plisse-400.webp 400w, assets/img/abito-plisse-800.webp 800w, assets/img/abito-plisse-1200.webp 1200w" sizes="(min-width: 90em) 20vw, (min-width: 64em) 25vw, (min-width: 48em) 33vw, 50vw" width="1200" height="1500" alt="Dettaglio dell'abito plissé grigio azzurro con volant, indossato" loading="lazy" decoding="async"><span class="card__badge">Arrivato martedì</span></div><div class="card__info"><h3 class="card__name">Abito plissé Spuma</h3><span class="card__price">145 €</span><p class="card__sizes"><span class="sr-only">Colore azzurro. Taglie disponibili: S, M</span><span aria-hidden="true"><s>XS</s> S M <s>L</s> <s>XL</s></span></p></div></a></li>
+<li class="card reveal" data-id="pantalone-palazzo-foglie" data-colore="giallo" data-taglie="XS S L XL" data-prezzo="85" data-nuovo="0"><a class="card__link" href="prodotto.html?id=pantalone-palazzo-foglie"><div class="card__media wind"><img src="assets/img/palazzo-800.webp" srcset="assets/img/palazzo-400.webp 400w, assets/img/palazzo-800.webp 800w, assets/img/palazzo-1200.webp 1200w" sizes="(min-width: 90em) 20vw, (min-width: 64em) 25vw, (min-width: 48em) 33vw, 50vw" width="1200" height="1500" alt="Pantalone palazzo giallo con stampa di foglie, indossato, inquadrato dalla vita in giù" loading="lazy" decoding="async"></div><div class="card__info"><h3 class="card__name">Pantalone palazzo a foglie</h3><span class="card__price">85 €</span><p class="card__sizes"><span class="sr-only">Colore giallo. Taglie disponibili: XS, S, L, XL</span><span aria-hidden="true">XS S <s>M</s> L XL</span></p></div></a></li>
+<li class="card card--big reveal" data-id="maglione-trecce" data-colore="bianco" data-taglie="S M L" data-prezzo="99" data-nuovo="0"><a class="card__link" href="prodotto.html?id=maglione-trecce"><div class="card__media wind"><img src="assets/img/maglione-800.webp" srcset="assets/img/maglione-400.webp 400w, assets/img/maglione-800.webp 800w, assets/img/maglione-1200.webp 1200w" sizes="(min-width: 90em) 40vw, (min-width: 64em) 50vw, (min-width: 48em) 66vw, 100vw" width="1200" height="1500" alt="Pila di maglioni a trecce piegati, dal bianco al nocciola" loading="lazy" decoding="async"><img class="alt" src="assets/img/maglione-2-800.webp" srcset="assets/img/maglione-2-400.webp 400w, assets/img/maglione-2-800.webp 800w, assets/img/maglione-2-1200.webp 1200w" sizes="(min-width: 90em) 40vw, (min-width: 64em) 50vw, (min-width: 48em) 66vw, 100vw" width="1200" height="1500" alt="" loading="lazy" decoding="async"></div><div class="card__info"><h3 class="card__name">Maglione a trecce</h3><span class="card__price">99 €</span><p class="card__sizes"><span class="sr-only">Colore bianco. Taglie disponibili: S, M, L</span><span aria-hidden="true"><s>XS</s> S M L <s>XL</s></span></p></div></a></li>
+<li class="card reveal" data-id="chemisier-cintura" data-colore="blu" data-taglie="S M L XL" data-prezzo="115" data-nuovo="0"><a class="card__link" href="prodotto.html?id=chemisier-cintura"><div class="card__media wind"><img src="assets/img/chemisier-800.webp" srcset="assets/img/chemisier-400.webp 400w, assets/img/chemisier-800.webp 800w" sizes="(min-width: 90em) 20vw, (min-width: 64em) 25vw, (min-width: 48em) 33vw, 50vw" width="800" height="1000" alt="Abito chemisier blu con cintura su un manichino, davanti a un muro rosa" loading="lazy" decoding="async"></div><div class="card__info"><h3 class="card__name">Chemisier con cintura</h3><span class="card__price">115 €</span><p class="card__sizes"><span class="sr-only">Colore blu. Taglie disponibili: S, M, L, XL</span><span aria-hidden="true"><s>XS</s> S M L XL</span></p></div></a></li>
+<li class="card reveal" data-id="giacca-trapuntata" data-colore="salvia" data-taglie="S M L XL" data-prezzo="135" data-nuovo="0"><a class="card__link" href="prodotto.html?id=giacca-trapuntata"><div class="card__media wind"><img src="assets/img/trapuntata-800.webp" srcset="assets/img/trapuntata-400.webp 400w, assets/img/trapuntata-800.webp 800w, assets/img/trapuntata-1200.webp 1200w" sizes="(min-width: 90em) 20vw, (min-width: 64em) 25vw, (min-width: 48em) 33vw, 50vw" width="1200" height="1500" alt="Giacca trapuntata color salvia appoggiata sulle spalle, vista di spalle" loading="lazy" decoding="async"></div><div class="card__info"><h3 class="card__name">Giacca trapuntata</h3><span class="card__price">135 €</span><p class="card__sizes"><span class="sr-only">Colore salvia. Taglie disponibili: S, M, L, XL</span><span aria-hidden="true"><s>XS</s> S M L XL</span></p></div></a></li>
+<li class="card reveal" data-id="maglia-righe-cotone" data-colore="blu" data-taglie="XS S M L" data-prezzo="69" data-nuovo="0"><a class="card__link" href="prodotto.html?id=maglia-righe-cotone"><div class="card__media wind"><img src="assets/img/maglia-righe-800.webp" srcset="assets/img/maglia-righe-400.webp 400w, assets/img/maglia-righe-800.webp 800w" sizes="(min-width: 90em) 20vw, (min-width: 64em) 25vw, (min-width: 48em) 33vw, 50vw" width="800" height="1000" alt="Maglia a maglia grossa con righe blu e grigie, piegata su fondo bianco" loading="lazy" decoding="async"></div><div class="card__info"><h3 class="card__name">Maglia a righe in cotone</h3><span class="card__price">69 €</span><p class="card__sizes"><span class="sr-only">Colore blu. Taglie disponibili: XS, S, M, L</span><span aria-hidden="true">XS S M L <s>XL</s></span></p></div></a></li>
+<li class="card reveal" data-id="blazer-destrutturato" data-colore="sabbia" data-taglie="S M L" data-prezzo="169" data-nuovo="0"><a class="card__link" href="prodotto.html?id=blazer-destrutturato"><div class="card__media wind"><img src="assets/img/blazer-720.webp" srcset="assets/img/blazer-400.webp 400w, assets/img/blazer-720.webp 720w" sizes="(min-width: 90em) 20vw, (min-width: 64em) 25vw, (min-width: 48em) 33vw, 50vw" width="720" height="900" alt="Blazer color sabbia appeso a un appendiabiti nero su parete chiara" loading="lazy" decoding="async"></div><div class="card__info"><h3 class="card__name">Blazer destrutturato</h3><span class="card__price">169 €</span><p class="card__sizes"><span class="sr-only">Colore sabbia. Taglie disponibili: S, M, L</span><span aria-hidden="true"><s>XS</s> S M L <s>XL</s></span></p></div></a></li>
+    </ul>
+  </section>
+
+  <!-- Schermata quasi vuota -->
+  <section class="still wrap" aria-label="Pochi pezzi per taglia">
+    <p class="still__text display reveal">Pochi pezzi per taglia. <em>Quando finisce, finisce.</em></p>
+    <div class="still__media wind reveal"><img src="assets/img/vento-800.webp" srcset="assets/img/vento-480.webp 480w, assets/img/vento-800.webp 800w, assets/img/vento-1200.webp 1200w" sizes="(min-width: 48em) 18rem, 42vw" width="1200" height="1500" alt="Un velo bianco portato dal vento nel cielo azzurro" loading="lazy" decoding="async"></div>
+    <p class="still__note reveal">Nelle schede vedi quanti pezzi restano per ogni taglia. Se ti piace un capo, te lo teniamo da parte per 48 ore.</p>
+  </section>
+
+  <!-- Il look della settimana -->
+  <section class="section look wrap" id="look" aria-labelledby="t-look">
+    <div class="section-head reveal">
+      <h2 class="display" id="t-look">Il look<br>della settimana</h2>
+    </div>
+    <div class="look__grid">
+      <div class="look__photo reveal">
+        <div class="wind"><img src="assets/img/look-800.webp" srcset="assets/img/look-480.webp 480w, assets/img/look-800.webp 800w, assets/img/look-1200.webp 1200w" sizes="(min-width: 48em) 45vw, 100vw" width="1200" height="1500" alt="Una donna di spalle cammina per strada con trench color sabbia, borsa marrone a tracolla e mocassini neri" loading="lazy" decoding="async"></div>
+        <button class="hotspot" type="button" data-id="trench-gabardine" aria-pressed="false" style="left:50%;top:33%"><span class="sr-only">Mostra </span><span class="hotspot__label">Trench</span></button><button class="hotspot" type="button" data-id="borsa-cocco" aria-pressed="false" style="left:57%;top:46%"><span class="sr-only">Mostra </span><span class="hotspot__label">Borsa</span></button><button class="hotspot" type="button" data-id="mocassini-pelle" aria-pressed="false" style="left:46%;top:87%"><span class="sr-only">Mostra </span><span class="hotspot__label">Mocassini</span></button>
+      </div>
+      <div class="reveal">
+        <p class="lead">Trench, borsa e mocassini: quello che metti quando il maestrale cala la sera.</p>
+        <p class="look__hint">Tocca i punti sulla foto per vedere i capi.</p>
+        <ul class="look__list" style="margin-top:1.5rem"><li class="look__item" data-id="trench-gabardine"><div class="look__thumb wind"><img src="assets/img/trench-800.webp" srcset="assets/img/trench-400.webp 400w, assets/img/trench-800.webp 800w, assets/img/trench-1200.webp 1200w" sizes="72px" width="1200" height="1500" alt="" loading="lazy" decoding="async"></div>
+          <p class="look__name"><a href="prodotto.html?id=trench-gabardine">Trench in gabardine</a><span class="look__price">189 € · taglia M</span></p>
+          <button class="look__add" type="button" aria-label="Aggiungi Trench in gabardine al carrello"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></li><li class="look__item" data-id="borsa-cocco"><div class="look__thumb wind"><img src="assets/img/borsa-400.webp" srcset="assets/img/borsa-400.webp 400w" sizes="72px" width="400" height="500" alt="" loading="lazy" decoding="async"></div>
+          <p class="look__name"><a href="prodotto.html?id=borsa-cocco">Borsa a mano stampa cocco</a><span class="look__price">119 € · taglia Unica</span></p>
+          <button class="look__add" type="button" aria-label="Aggiungi Borsa a mano stampa cocco al carrello"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></li><li class="look__item" data-id="mocassini-pelle"><div class="look__thumb wind"><img src="assets/img/mocassini-400.webp" srcset="assets/img/mocassini-400.webp 400w" sizes="72px" width="400" height="500" alt="" loading="lazy" decoding="async"></div>
+          <p class="look__name"><a href="prodotto.html?id=mocassini-pelle">Mocassini in pelle</a><span class="look__price">110 € · taglia 38</span></p>
+          <button class="look__add" type="button" aria-label="Aggiungi Mocassini in pelle al carrello"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></li></ul>
+        <div class="look__total"><p>Tutto il look<b>418 €</b></p><button class="btn btn--light" type="button" data-look-all>Prendi tutto il look</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servizi in negozio -->
+  <section class="section wrap" id="negozio" aria-labelledby="t-negozio">
+    <div class="section-head reveal"><h2 class="display" id="t-negozio">In negozio</h2></div>
+    <div class="services">
+      <ol class="services__list">
+        <li class="reveal"><h3>Orlo su misura</h3><p>Pantaloni e abiti lunghi li accorciamo noi, in tre giorni. Li provi con le scarpe che porterai.</p></li>
+        <li class="reveal"><h3>Te lo teniamo da parte</h3><p>Per 48 ore, con un messaggio. Dalla scheda del capo c'è il tasto apposta.</p></li>
+        <li class="reveal"><h3>Cambio con lo scontrino</h3><p>Entro 14 giorni, se il capo ha ancora il cartellino. Anche per i regali.</p></li>
+        <li class="reveal"><h3>Camerino su appuntamento</h3><p>Prima dell'apertura o dopo la chiusura, se ci scrivi il giorno prima. Per le cerimonie conviene.</p></li>
+      </ol>
+      <div class="services__media wind reveal"><img src="assets/img/negozio-800.webp" srcset="assets/img/negozio-480.webp 480w, assets/img/negozio-800.webp 800w, assets/img/negozio-1200.webp 1200w" sizes="(min-width: 48em) 35vw, 100vw" width="1200" height="1500" alt="Un appendiabiti in metallo con pochi capi chiari, una scala di legno e piante, in una stanza luminosa" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+
+  <!-- Orari e dove -->
+  <section class="section wrap visit" id="visita" aria-labelledby="t-visita">
+    <div class="visit__grid">
+      <h2 class="visit__big display reveal" id="t-visita">Orari<br>e dove</h2>
+      <div class="reveal">
+        <ul class="hours" aria-label="Orari di esempio">
+          <li data-day="1"><span>Lunedì</span><span>16:30–20:00</span></li>
+          <li data-day="2,3,4,5,6"><span>Mar–Sab</span><span>9:30–13:00<br>16:30–20:00</span></li>
+          <li data-day="0"><span>Domenica</span><span>Chiuso</span></li>
+        </ul>
+        <p class="visit__note">Orari di esempio. Il martedì mattina arrivano i capi nuovi.</p>
+      </div>
+      <div class="reveal">
+        <p class="address">Via dell'Esempio 1<br>Sardegna</p>
+        <a class="btn" data-wa="[DEMO — sito dimostrativo di Mockly, la boutique Maestrale è inventata]\nCiao! Vorrei un'informazione sui capi." href="https://wa.me/393517578080"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Scrivici su WhatsApp</a>
+        <p class="visit__note">È una demo: il messaggio arriva a Mockly, che ha fatto questo sito.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Finale -->
+  <section class="finale" aria-labelledby="t-fine">
+    <div class="finale__media wind"><img src="assets/img/arrivi-800.webp" srcset="assets/img/arrivi-480.webp 480w, assets/img/arrivi-800.webp 800w, assets/img/arrivi-1200.webp 1200w" sizes="100vw" width="1200" height="1500" alt="" loading="lazy" decoding="async"></div>
+    <div class="finale__body">
+      <h2 class="finale__title display" id="t-fine">Martedì<br><span class="accent">si cambia</span><br>vento.</h2>
+      <p>Ogni settimana una stecca di capi nuovi, appesi come li vedi qui. Passa a vederli prima che finiscano.</p>
+      <a class="btn btn--light" href="collezione.html" style="justify-self:start">Guarda la collezione <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="footer__cols">
+    <div><h2>Orari (di esempio)</h2><p>Lunedì 16:30–20:00<br>Da martedì a sabato<br>9:30–13:00 e 16:30–20:00<br>Domenica chiuso</p></div>
+    <div><h2>Dove</h2><p>Via dell'Esempio 1<br>Sardegna</p><p style="margin-top:.75rem"><a class="link" data-wa="[DEMO — sito dimostrativo di Mockly, la boutique Maestrale è inventata]\nCiao! Vorrei un'informazione sui capi." href="https://wa.me/393517578080">Scrivici su WhatsApp</a></p></div>
+    <div><h2>Pagine</h2><ul><li><a href="index.html">Home</a></li><li><a href="collezione.html">Collezione</a></li><li><a href="carrello.html">Carrello</a></li></ul></div>
+  </div>
+  <div class="footer__demo">
+    <p>Sito dimostrativo realizzato da Mockly. L'attività è inventata.</p>
+    <p><a class="link" data-wa="Ciao Mockly! Ho visto la demo della boutique Maestrale e vorrei un sito così per il mio lavoro." href="https://wa.me/393517578080">Vuoi un sito così per il tuo lavoro? Scrivici su WhatsApp</a></p>
+    <small>Prezzi, taglie, disponibilità e orari sono di esempio. Foto da Pexels. Nessun cookie, nessuna statistica.</small>
+  </div>
+</footer>
+<div class="scrim" aria-hidden="true"></div>
+<div class="toast" aria-live="polite"></div>
+<div class="thumbbar"></div>
+<script src="assets/js/data.js?v=1793732923"></script>
+<script src="assets/js/main.js?v=1793732923"></script>
+</body>
+</html>

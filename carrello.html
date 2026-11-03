@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carrello — Maestrale (demo)</title>
+<meta name="description" content="Il carrello della boutique Maestrale. Demo: il pagamento è simulato e l'ordine di prova si manda su WhatsApp.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Maestrale (demo di Mockly)">
+<meta property="og:title" content="Carrello — Maestrale (demo)">
+<meta property="og:description" content="Il carrello della boutique Maestrale. Demo: il pagamento è simulato e l'ordine di prova si manda su WhatsApp.">
+<meta property="og:image" content="assets/img/anteprima-social.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Maestrale: abito lungo azzurro mosso dal vento e la scritta Vestiti che prendono vento">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=1793732923">
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body data-page="carrello">
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+<header class="header">
+  <a class="logo" href="index.html">Maestrale<span class="logo__mark" aria-hidden="true"></span></a>
+  <nav class="nav" aria-label="Principale"><a href="collezione.html">Collezione</a><a href="index.html#look">Il look</a><a href="index.html#negozio">In negozio</a><a href="index.html#visita">Orari e dove</a></nav>
+  <div class="header__tools">
+    <a class="icon-btn" href="carrello.html" aria-current="page"><span class="sr-only">Carrello, capi:</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" data-cart-count data-n="0">0</span></a>
+    <button class="icon-btn menu-btn" type="button" aria-controls="menu" aria-expanded="false" data-open><span class="label">Menu</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h18M3 16h18"/></svg></button>
+  </div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" inert data-inert-closed>
+  <div class="menu__bar"><span class="eyebrow">Menu</span><button class="icon-btn" type="button" data-close aria-label="Chiudi il menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+  <ul class="menu__list"><li><a href="collezione.html">Collezione<small>01</small></a></li><li><a href="index.html#look">Il look<small>02</small></a></li><li><a href="index.html#negozio">In negozio<small>03</small></a></li><li><a href="index.html#visita">Orari e dove<small>04</small></a></li></ul>
+  <div class="menu__foot">
+    <p>Via dell'Esempio 1 · martedì arrivano i capi nuovi</p>
+    <a class="btn" data-wa="[DEMO — sito dimostrativo di Mockly, la boutique Maestrale è inventata]\nCiao! Vorrei un'informazione sui capi." href="https://wa.me/393517578080"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Scrivici su WhatsApp</a>
+  </div>
+</div>
+
+<main id="contenuto">
+  <div class="page-head">
+    <nav class="crumbs" aria-label="Sei qui"><a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Carrello</span></nav>
+    <h1 class="display">Carrello</h1>
+  </div>
+  <div class="cart" id="carrello" aria-live="polite">
+    <noscript><p class="lead">Il carrello ha bisogno di JavaScript attivo. Puoi sempre scriverci su WhatsApp.</p></noscript>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer__cols">
+    <div><h2>Orari (di esempio)</h2><p>Lunedì 16:30–20:00<br>Da martedì a sabato<br>9:30–13:00 e 16:30–20:00<br>Domenica chiuso</p></div>
+    <div><h2>Dove</h2><p>Via dell'Esempio 1<br>Sardegna</p><p style="margin-top:.75rem"><a class="link" data-wa="[DEMO — sito dimostrativo di Mockly, la boutique Maestrale è inventata]\nCiao! Vorrei un'informazione sui capi." href="https://wa.me/393517578080">Scrivici su WhatsApp</a></p></div>
+    <div><h2>Pagine</h2><ul><li><a href="index.html">Home</a></li><li><a href="collezione.html">Collezione</a></li><li><a href="carrello.html">Carrello</a></li></ul></div>
+  </div>
+  <div class="footer__demo">
+    <p>Sito dimostrativo realizzato da Mockly. L'attività è inventata.</p>
+    <p><a class="link" data-wa="Ciao Mockly! Ho visto la demo della boutique Maestrale e vorrei un sito così per il mio lavoro." href="https://wa.me/393517578080">Vuoi un sito così per il tuo lavoro? Scrivici su WhatsApp</a></p>
+    <small>Prezzi, taglie, disponibilità e orari sono di esempio. Foto da Pexels. Nessun cookie, nessuna statistica.</small>
+  </div>
+</footer>
+<div class="scrim" aria-hidden="true"></div>
+<div class="toast" aria-live="polite"></div>
+<script src="assets/js/data.js?v=1793732923"></script>
+<script src="assets/js/main.js?v=1793732923"></script>
+</body>
+</html>
