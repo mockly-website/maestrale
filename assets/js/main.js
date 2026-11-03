@@ -160,12 +160,22 @@
      poi una molla la riporta ferma con un piccolo dondolio. */
   var Wind = (function () {
     var items = new Map(), visible = new Set(), lastY = window.scrollY, vel = 0, running = false, io = null, idx = 0;
+    /* Angolo massimo per non scoprire i bordi: più la foto è alta e stretta, meno si piega */
+    function cap(w) {
+      var r = w.clientHeight / Math.max(1, w.clientWidth), lo = 0, hi = 3.4;
+      for (var i = 0; i < 12; i++) {
+        var m = (lo + hi) / 2, sc = 1.06 + m * 0.036;
+        if (Math.tan(m * Math.PI / 180) * r * sc <= (sc - 1) / 2 - 0.004) lo = m; else hi = m;
+      }
+      return lo;
+    }
+    window.addEventListener("resize", function () { items.forEach(function (s, w) { s.lim = cap(w); }); });
     function add(root) {
       if (reduce) return;
       $$(".wind", root).forEach(function (w) {
         if (items.has(w)) return;
         var i = idx++;
-        items.set(w, { a: 0, v: 0, k: 0.055 + (i % 3) * 0.012, dir: (i % 2 ? -1 : 1) * (0.75 + (i % 4) * 0.12), imgs: $$("img", w) });
+        items.set(w, { lim: cap(w), a: 0, v: 0, k: 0.055 + (i % 3) * 0.012, dir: (i % 2 ? -1 : 1) * (0.75 + (i % 4) * 0.12), imgs: $$("img", w) });
         if (io) io.observe(w);
       });
     }
@@ -180,15 +190,15 @@
         if (Math.abs(vel) > 0.05) moving = true;
         visible.forEach(function (w) {
           var s = items.get(w); if (!s) return;
-          var target = Math.max(-2.4, Math.min(2.4, vel * 0.11)) * s.dir;
+          var t0 = s.lim * 0.92, target = Math.max(-t0, Math.min(t0, vel * 0.13 * s.dir));
           s.v += (target - s.a) * s.k; s.v *= 0.84; s.a += s.v;
-          if (s.a > 2.6) { s.a = 2.6; s.v = 0; } else if (s.a < -2.6) { s.a = -2.6; s.v = 0; }
+          if (s.a > s.lim) { s.a = s.lim; s.v = 0; } else if (s.a < -s.lim) { s.a = -s.lim; s.v = 0; }
         });
       }
       visible.forEach(function (w) {
         var s = items.get(w); if (!s) return;
         if (Math.abs(s.a) > 0.01 || Math.abs(s.v) > 0.01) moving = true; else { s.a = 0; s.v = 0; }
-        var sc = 1.06 + Math.abs(s.a) * 0.03;
+        var sc = 1.06 + Math.abs(s.a) * 0.036;
         var t = s.a === 0 ? "" : "scale(" + sc.toFixed(4) + ") skewX(" + s.a.toFixed(3) + "deg)";
         for (var j = 0; j < s.imgs.length; j++) s.imgs[j].style.transform = t;
       });
