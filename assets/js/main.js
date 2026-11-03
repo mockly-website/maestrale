@@ -169,22 +169,32 @@
         if (io) io.observe(w);
       });
     }
-    function tick() {
-      var y = window.scrollY, dy = y - lastY; lastY = y;
-      vel += (dy - vel) * 0.22;
-      var moving = Math.abs(vel) > 0.05;
+    var lastT = 0;
+    function tick(now) {
+      /* Passi da 1/60 di secondo: stesso movimento anche se lo schermo è lento */
+      var steps = lastT ? Math.min(4, Math.max(1, Math.round((now - lastT) / 16.7))) : 1; lastT = now;
+      var y = window.scrollY, dy = (y - lastY) / steps; lastY = y;
+      var moving = false;
+      for (var n = 0; n < steps; n++) {
+        vel += (dy - vel) * 0.22;
+        if (Math.abs(vel) > 0.05) moving = true;
+        visible.forEach(function (w) {
+          var s = items.get(w); if (!s) return;
+          var target = Math.max(-2.4, Math.min(2.4, vel * 0.11)) * s.dir;
+          s.v += (target - s.a) * s.k; s.v *= 0.84; s.a += s.v;
+          if (s.a > 2.6) { s.a = 2.6; s.v = 0; } else if (s.a < -2.6) { s.a = -2.6; s.v = 0; }
+        });
+      }
       visible.forEach(function (w) {
         var s = items.get(w); if (!s) return;
-        var target = Math.max(-2.6, Math.min(2.6, vel * 0.11)) * s.dir;
-        s.v += (target - s.a) * s.k; s.v *= 0.86; s.a += s.v;
-        if (Math.abs(s.a) > 0.01 || Math.abs(s.v) > 0.01) moving = true;
+        if (Math.abs(s.a) > 0.01 || Math.abs(s.v) > 0.01) moving = true; else { s.a = 0; s.v = 0; }
         var sc = 1.06 + Math.abs(s.a) * 0.03;
-        var t = "scale(" + sc.toFixed(4) + ") skewX(" + s.a.toFixed(3) + "deg)";
+        var t = s.a === 0 ? "" : "scale(" + sc.toFixed(4) + ") skewX(" + s.a.toFixed(3) + "deg)";
         for (var j = 0; j < s.imgs.length; j++) s.imgs[j].style.transform = t;
       });
-      if (moving) requestAnimationFrame(tick); else { running = false; vel = 0; }
+      if (moving) requestAnimationFrame(tick); else { running = false; vel = 0; lastT = 0; }
     }
-    function kick() { if (!running && !reduce) { running = true; lastY = lastY || window.scrollY; requestAnimationFrame(tick); } }
+    function kick() { if (!running && !reduce) { running = true; requestAnimationFrame(tick); } }
     if (!reduce && "IntersectionObserver" in window) {
       io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) visible.add(x.target); else visible.delete(x.target); }); }, { rootMargin: "15% 0px" });
       window.addEventListener("scroll", kick, { passive: true });
@@ -462,6 +472,7 @@
     }
     function render() {
       var lines = Cart.read();
+      root.classList.toggle("is-empty", !lines.length);
       if (!lines.length) {
         var picks = ["abito-lungo-cala", "camicia-lino-coreana", "foulard-seta-mimosa"].map(D.trova);
         root.innerHTML = '<div class="cart-empty"><h2 class="display">Ancora vuoto.</h2><p class="lead">Il carrello resta salvato su questo telefono: puoi chiudere e tornare quando vuoi.</p>' +
@@ -548,6 +559,7 @@
         '<a class="btn btn--ghost btn--block" href="collezione.html">Torna alla collezione</a></div>';
       ordered = true;
       Cart.clear();
+      root.classList.add("is-empty");
       $("#fatto").focus();
     }
     var ordered = false;
