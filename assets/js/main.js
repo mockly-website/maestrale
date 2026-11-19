@@ -213,6 +213,67 @@
   })();
   window.MaestraleWind = Wind;
 
+  /* ---------- La stecca: file di capi che scorrono ---------- */
+  /* Col dito scorrono da sole; col mouse si trascinano o si usano le frecce.
+     Quando la stecca si muove i capi oscillano un poco, poi tornano fermi. */
+  function railHTML(list, label, small) {
+    return '<div class="rail' + (small ? " rail--small" : "") + '" data-rail><ul class="rail__track" aria-label="' + label + '">' +
+      list.map(function (p) { return D.card(p, { reveal: false }).replace(/sizes="[^"]*"/g, 'sizes="(min-width: 64em) 22vw, (min-width: 48em) 34vw, 52vw"'); }).join("") +
+      '</ul><div class="rail__foot wrap"><button class="rail__btn" type="button" data-dir="-1" aria-label="Capi precedenti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>' +
+      '<div class="rail__bar" aria-hidden="true"><span></span></div><button class="rail__btn" type="button" data-dir="1" aria-label="Capi successivi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>';
+  }
+  function initRails(root) {
+    $$("[data-rail]", root).forEach(function (rail) {
+      if (rail.hasAttribute("data-ready")) return;
+      rail.setAttribute("data-ready", "");
+      var t = $(".rail__track", rail), bar = $(".rail__bar span", rail), btns = $$(".rail__btn", rail);
+      var last = t.scrollLeft, timer = 0, raf = 0;
+      function update() {
+        raf = 0;
+        var max = t.scrollWidth - t.clientWidth, p = max > 0 ? t.scrollLeft / max : 1;
+        if (bar) bar.style.width = (max > 0 ? Math.max(8, Math.min(100, (t.clientWidth / t.scrollWidth) * 100 + p * (100 - (t.clientWidth / t.scrollWidth) * 100))) : 100) + "%";
+        if (btns.length) { btns[0].disabled = t.scrollLeft < 4; btns[1].disabled = t.scrollLeft > max - 4; }
+        if (!reduce) {
+          var v = Math.max(-6, Math.min(6, (t.scrollLeft - last) * .3));
+          if (Math.abs(v) > .2) {
+            t.style.setProperty("--sway", v.toFixed(2) + "deg");
+            clearTimeout(timer); timer = setTimeout(function () { t.style.setProperty("--sway", "0deg"); }, 80);
+          }
+        }
+        last = t.scrollLeft;
+      }
+      t.addEventListener("scroll", function () { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+      window.addEventListener("resize", update);
+      rail.update = update;
+      btns.forEach(function (b) {
+        b.addEventListener("click", function () { t.scrollBy({ left: +b.getAttribute("data-dir") * t.clientWidth * .75, behavior: reduce ? "auto" : "smooth" }); });
+      });
+      /* Trascinare col mouse */
+      var down = false, moved = false, x0 = 0, s0 = 0;
+      t.addEventListener("pointerdown", function (e) {
+        if (e.pointerType !== "mouse" || e.button !== 0) return;
+        down = true; moved = false; x0 = e.clientX; s0 = t.scrollLeft;
+      });
+      window.addEventListener("pointermove", function (e) {
+        if (!down) return;
+        var dx = e.clientX - x0;
+        if (!moved && Math.abs(dx) > 5) { moved = true; t.classList.add("is-dragging"); }
+        if (moved) t.scrollLeft = s0 - dx;
+      });
+      window.addEventListener("pointerup", function () {
+        if (!down) return;
+        down = false;
+        if (moved) {
+          /* Lascia la classe un attimo, così il clic finale non apre il capo */
+          setTimeout(function () { t.classList.remove("is-dragging"); }, 0);
+        }
+      });
+      t.addEventListener("click", function (e) { if (moved) { e.preventDefault(); moved = false; } }, true);
+      t.addEventListener("dragstart", function (e) { e.preventDefault(); });
+      update();
+    });
+  }
+
   /* ---------- Orari: evidenzia oggi ---------- */
   var today = new Date().getDay();
   $$(".hours [data-day]").forEach(function (li) {
@@ -228,6 +289,23 @@
   pages.home = function () {
     requestAnimationFrame(function () { requestAnimationFrame(function () { document.documentElement.classList.add("is-ready"); }); });
     watchThumbbar($(".hero__actions"));
+
+    /* Tutta la stecca: mostra solo un tipo di capo */
+    var stecca = $("#stecca"), nOut = $("#stecca-n");
+    $$(".kinds button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var k = b.getAttribute("data-kind"), n = 0;
+        $$(".kinds button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        $$(".card", stecca).forEach(function (c) {
+          var ok = !k || c.getAttribute("data-tipo") === k;
+          c.classList.toggle("is-hidden", !ok); if (ok) n++;
+        });
+        stecca.scrollLeft = 0;
+        nOut.textContent = n === 1 ? "1 capo" : n + " capi";
+        var r = stecca.closest("[data-rail]"); r && r.update && r.update();
+        Wind.add(stecca);
+      });
+    });
 
     /* Il look della settimana: tocca un punto, il capo si accende nella lista */
     var look = $("#look");
@@ -362,8 +440,9 @@
       var n = p.taglie[t];
       return '<label class="chip"><input type="radio" name="taglia" value="' + t + '"' + (n ? "" : " disabled") + (libere.length === 1 && n ? " checked" : "") + '><span>' + t + (n ? "" : '<span class="sr-only"> esaurita</span>') + "</span></label>";
     }).join("");
-    var related = D.CAPI.filter(function (x) { return x.id !== p.id && (x.tipo !== p.tipo); }).filter(function (x, i) { return (i + p.prezzo) % 3 === 0; }).slice(0, 4);
-    if (related.length < 4) related = D.CAPI.filter(function (x) { return x.id !== p.id; }).slice(0, 4);
+    /* Prima i capi di un altro tipo, poi gli altri: tutta la stecca da scorrere */
+    var related = D.CAPI.filter(function (x) { return x.id !== p.id && x.tipo !== p.tipo; })
+      .concat(D.CAPI.filter(function (x) { return x.id !== p.id && x.tipo === p.tipo; })).slice(0, 10);
     var guide = p.tipo === "Accessori" ? "" : '<button type="button" data-guide>Guida alle taglie</button>';
 
     root.innerHTML =
@@ -385,15 +464,15 @@
           "<div><dt>Cambio</dt><dd>Entro 14 giorni, con lo scontrino. In questa demo è un esempio.</dd></div></dl>" +
         "</div>" +
       "</article>" +
-      '<section class="related wrap" aria-labelledby="abbina"><h2 class="display" id="abbina">Ci sta bene con</h2><ul class="grid">' +
-        related.map(function (r) { return D.card(r, { reveal: true }); }).join("") + "</ul></section>" +
+      '<section class="related shelf" aria-labelledby="abbina"><div class="shelf__head wrap"><h2 class="h2" id="abbina">Ci sta bene con</h2></div>' +
+        railHTML(related, "Capi da abbinare", true) + "</section>" +
       '<dialog class="dialog" id="guida"><div class="dialog__in"><div class="dialog__head"><h2 class="display">Guida alle taglie</h2><button class="icon-btn" type="button" data-close-dialog aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>' +
         '<p>Misure del corpo in centimetri, di esempio. Se sei tra due taglie, scrivici: ti diciamo noi come veste questo capo.</p>' +
         '<div class="table-wrap"><table><thead><tr><th scope="col">Taglia</th><th scope="col">Seno</th><th scope="col">Vita</th><th scope="col">Fianchi</th></tr></thead><tbody>' +
         "<tr><th scope=\"row\">XS</th><td>80–84</td><td>62–66</td><td>88–92</td></tr><tr><th scope=\"row\">S</th><td>84–88</td><td>66–70</td><td>92–96</td></tr><tr><th scope=\"row\">M</th><td>88–92</td><td>70–74</td><td>96–100</td></tr><tr><th scope=\"row\">L</th><td>92–98</td><td>74–80</td><td>100–106</td></tr><tr><th scope=\"row\">XL</th><td>98–104</td><td>80–86</td><td>106–112</td></tr>" +
         "</tbody></table></div></div></dialog>";
 
-    revealAll(root); Wind.add(root);
+    revealAll(root); initRails(root); Wind.add(root);
 
     /* Galleria da telefono: i puntini seguono il dito */
     var track = $(".gallery__track", root), dotBtns = $$(".gallery__dots button", root);
@@ -484,11 +563,11 @@
       var lines = Cart.read();
       root.classList.toggle("is-empty", !lines.length);
       if (!lines.length) {
-        var picks = ["abito-lungo-cala", "camicia-lino-coreana", "foulard-seta-mimosa"].map(D.trova);
+        var picks = D.CAPI.filter(function (p) { return p.nuovo; }).concat(D.CAPI.filter(function (p) { return !p.nuovo; })).slice(0, 8);
         root.innerHTML = '<div class="cart-empty"><h2 class="display">Ancora vuoto.</h2><p class="lead">Il carrello resta salvato su questo telefono: puoi chiudere e tornare quando vuoi.</p>' +
           '<a class="btn" href="collezione.html">Guarda la collezione</a></div>' +
-          '<section aria-labelledby="idee"><h2 class="eyebrow" id="idee" style="margin:2.5rem 0 1rem">Da dove cominciare</h2><ul class="grid">' + picks.map(function (p) { return D.card(p, { reveal: false }); }).join("") + "</ul></section>";
-        Wind.add(root);
+          '<section class="shelf" aria-labelledby="idee"><h2 class="h2" id="idee" style="margin-bottom:1.5rem">Da dove cominciare</h2>' + railHTML(picks, "Capi da cui cominciare", true) + "</section>";
+        initRails(root); Wind.add(root);
         return;
       }
       var t = totals();
@@ -588,5 +667,6 @@
   updateCount(false);
   if (pages[page]) pages[page]();
   revealAll(document);
+  initRails(document);
   Wind.add(document);
 })();
