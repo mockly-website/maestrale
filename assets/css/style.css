@@ -177,7 +177,6 @@ ul, ol { padding: 0; list-style: none; }
 /* Vento sulle foto: il contenitore taglia, l'immagine si piega dall'alto come su una gruccia */
 .wind { overflow: hidden; background: var(--soft); }
 .wind > img, .wind > picture > img { width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 0; }
-.js .wind > img { will-change: transform; }
 
 .hero__actions { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: center; }
 
@@ -201,8 +200,6 @@ ul, ol { padding: 0; list-style: none; }
 .rack__btn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .rack__btn img { display: block; width: 100%; height: auto; filter: drop-shadow(0 16px 18px rgba(19, 35, 63, .16)); -webkit-user-drag: none; }
 .rack__btn:focus-visible { outline-offset: -2px; border-radius: .5rem; }
-.rack__item.is-swinging .rack__btn { transform-origin: 50% 3.3%; animation: swing 1.4s var(--ease-out); }
-@keyframes swing { 0% { transform: rotate(5deg); } 30% { transform: rotate(-3deg); } 60% { transform: rotate(1.4deg); } 100% { transform: none; } }
 @media (hover: hover) { .rack__item:not(.is-current):hover { filter: none !important; opacity: 1 !important; } }
 .rack__arrow {
   position: absolute; top: 50%; z-index: 60; width: 3rem; height: 3rem; margin-top: -1.5rem; border-radius: 50%;
@@ -234,9 +231,6 @@ ul, ol { padding: 0; list-style: none; }
 @media (min-width: 64em) {
   .rack__title { max-width: none; font-size: clamp(3.25rem, 3.6vw, 4.5rem); }
   .rack__info { grid-template-columns: 9rem minmax(0, 1fr); gap: 1.5rem; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .rack__item.is-swinging .rack__btn { animation: none; }
 }
 
 /* ---------- Scheda capo (card) ---------- */
@@ -283,7 +277,6 @@ ul, ol { padding: 0; list-style: none; }
 .rail .card { flex: none; width: clamp(13rem, 64vw, 22rem); scroll-snap-align: start; }
 .rail .card:nth-child(3n+2) { width: clamp(11.5rem, 52vw, 18rem); }
 .rail .card.is-hidden { display: none; }
-.rail .card__link { transform-origin: 50% -1.5rem; transform: rotate(var(--sway, 0deg)); transition: transform .9s cubic-bezier(.3, 1.6, .4, 1); }
 .rail .card__link::before { content: ""; display: block; width: 2px; height: 1.4rem; margin: 0 auto -.7rem; background: var(--ink); }
 .rail img { -webkit-user-drag: none; user-select: none; }
 .rail--small .card { width: clamp(11rem, 48vw, 17rem); }
@@ -334,7 +327,7 @@ ul, ol { padding: 0; list-style: none; }
   display: grid; place-items: center; -webkit-tap-highlight-color: transparent;
 }
 .hotspot::before { content: ""; width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--paper); box-shadow: 0 0 0 .35rem rgba(247, 249, 249, .35); transition: transform .2s, background-color .2s; }
-.hotspot::after { content: ""; position: absolute; inset: .3rem; border-radius: 50%; border: 2px solid var(--paper); animation: ping 2.4s var(--ease-out) infinite; }
+.hotspot::after { content: ""; position: absolute; inset: .3rem; border-radius: 50%; border: 2px solid var(--paper); animation: ping 2.4s var(--ease-out) 3 forwards; }
 .hotspot:nth-of-type(2)::after { animation-delay: .6s; }
 .hotspot:nth-of-type(3)::after { animation-delay: 1.2s; }
 @keyframes ping { from { transform: scale(.6); opacity: .9; } to { transform: scale(1.7); opacity: 0; } }
@@ -674,7 +667,6 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 /* ---------- Riduci movimento ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-  .rail .card__link { transform: none; }
   .hotspot::after { display: none; }
 }
 

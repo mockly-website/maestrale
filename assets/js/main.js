@@ -155,67 +155,12 @@
     els.forEach(function (e) { io.observe(e); });
   }
 
-  /* ---------- Animazione firma: il vento sulle foto ---------- */
-  /* Ogni foto è appesa dall'alto come su una gruccia: la velocità dello scroll la piega,
-     poi una molla la riporta ferma con un piccolo dondolio. */
-  var Wind = (function () {
-    var items = new Map(), visible = new Set(), lastY = window.scrollY, vel = 0, running = false, io = null, idx = 0;
-    /* Angolo massimo per non scoprire i bordi: più la foto è alta e stretta, meno si piega */
-    function cap(w) {
-      var r = w.clientHeight / Math.max(1, w.clientWidth), lo = 0, hi = 3.4;
-      for (var i = 0; i < 12; i++) {
-        var m = (lo + hi) / 2, sc = 1.06 + m * 0.036;
-        if (Math.tan(m * Math.PI / 180) * r * sc <= (sc - 1) / 2 - 0.004) lo = m; else hi = m;
-      }
-      return lo;
-    }
-    window.addEventListener("resize", function () { items.forEach(function (s, w) { s.lim = cap(w); }); });
-    function add(root) {
-      if (reduce) return;
-      $$(".wind", root).forEach(function (w) {
-        if (items.has(w)) return;
-        var i = idx++;
-        items.set(w, { lim: cap(w), a: 0, v: 0, k: 0.055 + (i % 3) * 0.012, dir: (i % 2 ? -1 : 1) * (0.75 + (i % 4) * 0.12), imgs: $$("img", w) });
-        if (io) io.observe(w);
-      });
-    }
-    var lastT = 0;
-    function tick(now) {
-      /* Passi da 1/60 di secondo: stesso movimento anche se lo schermo è lento */
-      var steps = lastT ? Math.min(4, Math.max(1, Math.round((now - lastT) / 16.7))) : 1; lastT = now;
-      var y = window.scrollY, dy = (y - lastY) / steps; lastY = y;
-      var moving = false;
-      for (var n = 0; n < steps; n++) {
-        vel += (dy - vel) * 0.22;
-        if (Math.abs(vel) > 0.05) moving = true;
-        visible.forEach(function (w) {
-          var s = items.get(w); if (!s) return;
-          var t0 = s.lim * 0.92, target = Math.max(-t0, Math.min(t0, vel * 0.13 * s.dir));
-          s.v += (target - s.a) * s.k; s.v *= 0.84; s.a += s.v;
-          if (s.a > s.lim) { s.a = s.lim; s.v = 0; } else if (s.a < -s.lim) { s.a = -s.lim; s.v = 0; }
-        });
-      }
-      visible.forEach(function (w) {
-        var s = items.get(w); if (!s) return;
-        if (Math.abs(s.a) > 0.01 || Math.abs(s.v) > 0.01) moving = true; else { s.a = 0; s.v = 0; }
-        var sc = 1.06 + Math.abs(s.a) * 0.036;
-        var t = s.a === 0 ? "" : "scale(" + sc.toFixed(4) + ") skewX(" + s.a.toFixed(3) + "deg)";
-        for (var j = 0; j < s.imgs.length; j++) s.imgs[j].style.transform = t;
-      });
-      if (moving) requestAnimationFrame(tick); else { running = false; vel = 0; lastT = 0; }
-    }
-    function kick() { if (!running && !reduce) { running = true; requestAnimationFrame(tick); } }
-    if (!reduce && "IntersectionObserver" in window) {
-      io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) visible.add(x.target); else visible.delete(x.target); }); }, { rootMargin: "15% 0px" });
-      window.addEventListener("scroll", kick, { passive: true });
-    }
-    return { add: add, kick: kick };
-  })();
+  /* Le foto restano ferme: niente movimento da solo (i punti dove si chiamava il vento restano, senza effetto). */
+  var Wind = { add: function () {}, kick: function () {} };
   window.MaestraleWind = Wind;
 
   /* ---------- La stecca: file di capi che scorrono ---------- */
-  /* Col dito scorrono da sole; col mouse si trascinano o si usano le frecce.
-     Quando la stecca si muove i capi oscillano un poco, poi tornano fermi. */
+  /* Col dito scorrono da sole; col mouse si trascinano o si usano le frecce. */
   function railHTML(list, label, small) {
     return '<div class="rail' + (small ? " rail--small" : "") + '" data-rail><ul class="rail__track" aria-label="' + label + '">' +
       list.map(function (p) { return D.card(p, { reveal: false }).replace(/sizes="[^"]*"/g, 'sizes="(min-width: 64em) 22vw, (min-width: 48em) 34vw, 52vw"'); }).join("") +
@@ -227,20 +172,12 @@
       if (rail.hasAttribute("data-ready")) return;
       rail.setAttribute("data-ready", "");
       var t = $(".rail__track", rail), bar = $(".rail__bar span", rail), btns = $$(".rail__btn", rail);
-      var last = t.scrollLeft, timer = 0, raf = 0;
+      var raf = 0;
       function update() {
         raf = 0;
         var max = t.scrollWidth - t.clientWidth, p = max > 0 ? t.scrollLeft / max : 1;
         if (bar) bar.style.width = (max > 0 ? Math.max(8, Math.min(100, (t.clientWidth / t.scrollWidth) * 100 + p * (100 - (t.clientWidth / t.scrollWidth) * 100))) : 100) + "%";
         if (btns.length) { btns[0].disabled = t.scrollLeft < 4; btns[1].disabled = t.scrollLeft > max - 4; }
-        if (!reduce) {
-          var v = Math.max(-6, Math.min(6, (t.scrollLeft - last) * .3));
-          if (Math.abs(v) > .2) {
-            t.style.setProperty("--sway", v.toFixed(2) + "deg");
-            clearTimeout(timer); timer = setTimeout(function () { t.style.setProperty("--sway", "0deg"); }, 80);
-          }
-        }
-        last = t.scrollLeft;
       }
       t.addEventListener("scroll", function () { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
       window.addEventListener("resize", update);

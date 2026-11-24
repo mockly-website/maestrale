@@ -62,8 +62,6 @@
     i = Math.max(0, Math.min(n - 1, i));
     if (i === sel) return;
     sel = i; layout(0); info();
-    var cur = items[sel];
-    if (!reduce) { cur.classList.remove("is-swinging"); void cur.offsetWidth; cur.classList.add("is-swinging"); }
     if (focus) btns[sel].focus({ preventScroll: true });
   }
   btns.forEach(function (b, i) {
