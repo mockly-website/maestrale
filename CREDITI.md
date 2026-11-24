@@ -15,7 +15,7 @@ di attribuzione. Le attribuzioni sono raccolte comunque qui. Nessuna ha volti ri
 primo piano, insegne o marchi leggibili.
 
 Le foto sono state ritagliate in 4:5, appena desaturate e convertite in WebP in più larghezze.
-Borsa e mocassini sono ritagli della stessa foto del look della settimana. Le modifiche non cambiano
+Borsa e mocassini sono ritagli della stessa foto del look della settimana. I file `*-cut-*` della stecca in apertura sono gli stessi capi scontornati (sfondo tolto con lo scontorno automatico di macOS), con il gancio della gruccia messo in alto al centro. Le modifiche non cambiano
 il soggetto della foto.
 
 | File | Fotografia originale | Autore |
@@ -28,6 +28,17 @@ il soggetto della foto.
 | `assets/img/look-*, borsa-*, mocassini-*` | [Woman in trench and handbag on shoulder](https://www.pexels.com/photo/woman-in-trench-and-handbag-on-shoulder-20132807/) (ID 20132807) | Xiao Bo |
 | `assets/img/camicia-lino-*` | [Shirt on hanger on branch](https://www.pexels.com/photo/shirt-on-hanger-on-branch-22441297/) (ID 22441297) | dayong tien |
 | `assets/img/camicia-lino-2-*` | [Shirt on hanger on branch](https://www.pexels.com/photo/shirt-on-hanger-on-branch-22441291/) (ID 22441291) | dayong tien |
+| `assets/img/abito-lungo-verde-*` | [Dress hanging on bathroom door](https://www.pexels.com/photo/dress-hanging-on-bathroom-door-12594058/) (ID 12594058) | Lisa Fotios |
+| `assets/img/abito-maniche-lunghe-*` | [A dress in a room](https://www.pexels.com/photo/a-dress-in-a-room-7532776/) (ID 7532776) | Maria Ovchinnikova |
+| `assets/img/abito-midi-panna-*` | [Minimalist white t-shirt on wooden hanger](https://www.pexels.com/photo/minimalist-white-t-shirt-on-wooden-hanger-37704850/) (ID 37704850) | Daniel & Hannah Snipes |
+| `assets/img/camicia-lino-corta-*` | [White shirt on hanger on branch](https://www.pexels.com/photo/white-shirt-on-hanger-on-branch-22441295/) (ID 22441295) | dayong tien |
+| `assets/img/blazer-morbido-*` | [Photograph of a jacket on a wooden hanger](https://www.pexels.com/photo/photograph-of-a-jacket-on-a-wooden-hanger-6909817/) (ID 6909817) | Roger Aribau Gisbert |
+| `assets/img/blazer-nero-*` | [Suit hanging on door](https://www.pexels.com/photo/suit-hanging-on-door-20428090/) (ID 20428090) | Esma Atak |
+| `assets/img/trench-corto-*` | [Brown button up long sleeve shirt hanging on black hanger](https://www.pexels.com/photo/brown-button-up-long-sleeve-shirt-hanging-on-black-hanger-5424917/) (ID 5424917) | Arina Krasnikova |
+| `assets/img/gilet-quadri-*` | [Gray vest hanging on a hanger](https://www.pexels.com/photo/gray-vest-hanging-on-a-hanger-5380086/) (ID 5380086) | Maria Fernanda Perez |
+| `assets/img/gilet-traforato-*` | [Blue and white sleeveless top](https://www.pexels.com/photo/blue-and-white-sleeveless-top-2850487/) (ID 2850487) | Anj Namoro |
+| `assets/img/polo-righe-*` | [Cozy striped sweater on hanger](https://www.pexels.com/photo/cozy-children-s-striped-sweater-on-hanger-28259757/) (ID 28259757) | Ruxanda Scutelnic |
+| `assets/img/tshirt-stampa-*` | [A blue t-shirt hanging on a wall](https://www.pexels.com/photo/a-blue-t-shirt-hanging-on-a-wall-22613978/) (ID 22613978) | Ali Babajahdi |
 | `assets/img/blazer-*` | [White blazer hanging on black metal rack](https://www.pexels.com/photo/white-blazer-hanging-on-black-metal-rack-7671167/) (ID 7671167) | Ivan S |
 | `assets/img/overshirt-*` | [Brown long sleeve shirt hanging on black metal rack](https://www.pexels.com/photo/brown-long-sleeve-shirt-hanging-on-black-metal-rack-7671168/) (ID 7671168) | Ivan S |
 | `assets/img/maglia-righe-*` | [Gray and black striped crew neck top](https://www.pexels.com/photo/gray-and-black-striped-crew-neck-top-45982/) (ID 45982) | Dom J |

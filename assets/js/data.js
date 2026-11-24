@@ -10,6 +10,7 @@
     azzurro: { nome: "Azzurro", hex: "#43BFD9" },
     blu:     { nome: "Blu",     hex: "#2E3C93" },
     salvia:  { nome: "Salvia",  hex: "#B8C2AB" },
+    verde:   { nome: "Verde",   hex: "#56704F" },
     giallo:  { nome: "Giallo",  hex: "#F0BE2C" },
     arancio: { nome: "Arancio", hex: "#E5602A" },
     marrone: { nome: "Marrone", hex: "#6A3824" }
@@ -22,6 +23,87 @@
   var LAVA_SETA = "Solo lavaggio a mano in acqua fredda o a secco. Non strizzare.";
   var LAVA_COT = "Lavatrice a 30°, al rovescio. Stiratura a ferro medio.";
   var LAVA_LANA = "Lavaggio a mano in acqua fredda. Asciugare in piano, mai appesa.";
+
+  /* I capi arrivati martedì: hanno anche la foto scontornata (cut) per la stecca in apertura. */
+  var NUOVI = [
+    {
+      id: "abito-lungo-verde", alt: "Abito lungo smanicato verde appeso a una gruccia", nome: "Abito lungo smanicato", tipo: "Abiti", prezzo: 119,
+      colore: "verde", img: ["abito-lungo-verde"], w: [400, 800, 1200], cut: "abito-lungo-verde",
+      taglie: { XS: 1, S: 2, M: 2, L: 1, XL: 0 },
+      materiale: "100% lino lavato", lavaggio: LAVA_LINO,
+      vestibilita: "Dritto, lungo fino alla caviglia. Scollo tondo, spalle scoperte.", orlo: true
+    },
+    {
+      id: "abito-maniche-lunghe", alt: "Abito lungo color sabbia chiaro a maniche lunghe, appeso a una gruccia", nome: "Abito lungo a maniche lunghe", tipo: "Abiti", prezzo: 139,
+      colore: "sabbia", img: ["abito-maniche-lunghe"], w: [400, 800, 1200], cut: "abito-maniche-lunghe",
+      taglie: { XS: 0, S: 1, M: 2, L: 1, XL: 0 },
+      materiale: "100% viscosa, maniche in tulle leggero", lavaggio: LAVA_SETA,
+      vestibilita: "Aderente sopra, gonna ampia che arriva alla caviglia.", orlo: true
+    },
+    {
+      id: "abito-midi-panna", alt: "Abito lungo in cotone color panna appeso a una gruccia di legno", nome: "Abito t-shirt in cotone", tipo: "Abiti", prezzo: 79,
+      colore: "bianco", img: ["abito-midi-panna"], w: [400, 800, 1200], cut: "abito-midi-panna",
+      taglie: { XS: 1, S: 2, M: 2, L: 2, XL: 1 },
+      materiale: "100% cotone pesante", lavaggio: LAVA_COT,
+      vestibilita: "Morbido, sotto il ginocchio. Si porta anche con una cintura."
+    },
+    {
+      id: "camicia-lino-corta", alt: "Camicia bianca in lino a maniche corte con collo coreano, appesa a una gruccia di legno", nome: "Camicia in lino a maniche corte", tipo: "Camicie", prezzo: 69,
+      colore: "bianco", img: ["camicia-lino-corta"], w: [400, 800, 1200], cut: "camicia-lino-corta",
+      taglie: { XS: 1, S: 2, M: 3, L: 2, XL: 1 },
+      materiale: "100% lino lavato", lavaggio: LAVA_LINO,
+      vestibilita: "Comoda, da portare fuori dai pantaloni."
+    },
+    {
+      id: "blazer-morbido", alt: "Blazer color sabbia appeso a una gruccia di legno", nome: "Blazer morbido", tipo: "Giacche", prezzo: 159,
+      colore: "sabbia", img: ["blazer-morbido"], w: [400, 800, 1200], cut: "blazer-morbido",
+      taglie: { XS: 0, S: 1, M: 2, L: 1, XL: 1 },
+      materiale: "60% lana, 40% viscosa. Senza fodera.", lavaggio: "Lavaggio a secco.",
+      vestibilita: "Spalla scesa, un po' lungo. Si porta aperto."
+    },
+    {
+      id: "blazer-nero", alt: "Blazer nero sopra una camicia bianca, appesi alla stessa gruccia", nome: "Blazer nero sciancrato", tipo: "Giacche", prezzo: 179,
+      colore: "nero", img: ["blazer-nero"], w: [400, 800, 1200], cut: "blazer-nero",
+      taglie: { XS: 1, S: 1, M: 1, L: 0, XL: 0 },
+      materiale: "98% lana, 2% elastan. Fodera in viscosa.", lavaggio: "Lavaggio a secco.",
+      vestibilita: "Stretto in vita, un bottone. Veste regolare."
+    },
+    {
+      id: "giacca-sahariana", alt: "Giacca sahariana color cammello con cintura, appesa a una gruccia nera", nome: "Giacca sahariana con cintura", tipo: "Giacche", prezzo: 175,
+      colore: "sabbia", img: ["trench-corto"], w: [400, 800, 1200], cut: "trench-corto",
+      taglie: { XS: 1, S: 2, M: 1, L: 1, XL: 0 },
+      materiale: "100% cotone gabardine", lavaggio: LAVA_COT,
+      vestibilita: "Morbida, si chiude con la cintura. Arriva a metà coscia."
+    },
+    {
+      id: "gilet-quadri", alt: "Gilet doppiopetto grigio a quadri appeso a una gruccia di legno", nome: "Gilet a quadri doppiopetto", tipo: "Giacche", prezzo: 89,
+      colore: "grigio", img: ["gilet-quadri"], w: [400, 800, 1200], cut: "gilet-quadri",
+      taglie: { XS: 1, S: 1, M: 2, L: 1, XL: 0 },
+      materiale: "70% lana, 30% poliestere", lavaggio: "Lavaggio a secco.",
+      vestibilita: "Corto, sopra una camicia o da solo."
+    },
+    {
+      id: "gilet-traforato", alt: "Gilet blu in maglia traforata sopra un top bianco, appesi a una gruccia di legno", nome: "Gilet in maglia traforata", tipo: "Maglie", prezzo: 65,
+      colore: "blu", img: ["gilet-traforato"], w: [400, 800, 1200], cut: "gilet-traforato",
+      taglie: { XS: 0, S: 1, M: 2, L: 2, XL: 1 },
+      materiale: "100% cotone", lavaggio: LAVA_LANA,
+      vestibilita: "Lungo e aperto davanti. Il top bianco non è compreso."
+    },
+    {
+      id: "polo-righe", alt: "Polo in maglia marrone a righe chiare appesa a una gruccia di legno", nome: "Polo in maglia a righe", tipo: "Maglie", prezzo: 72,
+      colore: "marrone", img: ["polo-righe"], w: [400, 800, 1200], cut: "polo-righe",
+      taglie: { XS: 1, S: 2, M: 1, L: 0, XL: 0 },
+      materiale: "80% cotone, 20% lana", lavaggio: LAVA_LANA,
+      vestibilita: "Corta, maniche fino al gomito."
+    },
+    {
+      id: "tshirt-stampa", alt: "Maglietta azzurra con stampa gialla appesa a una gruccia", nome: "Maglietta con stampa", tipo: "Maglie", prezzo: 39,
+      colore: "azzurro", img: ["tshirt-stampa"], w: [400, 800, 1200], cut: "tshirt-stampa",
+      taglie: { XS: 2, S: 3, M: 3, L: 2, XL: 1 },
+      materiale: "100% cotone tinto in capo", lavaggio: LAVA_COT,
+      vestibilita: "Ampia, spalla scesa."
+    }
+  ];
 
   var CAPI = [
     {
@@ -55,7 +137,7 @@
       taglie: { XS: 2, S: 3, M: 2, L: 1, XL: 1 },
       materiale: "100% lino lavato", lavaggio: LAVA_LINO,
       vestibilita: "Comoda sulle spalle. Se sei tra due taglie, prendi la più piccola.",
-      nuovo: true
+      nuovo: true, cut: "camicia-lino-coreana"
     },
     {
       id: "blazer-destrutturato", alt: "Blazer color sabbia appeso a un appendiabiti nero su parete chiara", nome: "Blazer destrutturato", tipo: "Giacche", prezzo: 169,
@@ -162,6 +244,10 @@
     }
   ];
 
+
+  CAPI.forEach(function (p) { if (p.id !== "camicia-lino-coreana") delete p.nuovo; });
+  NUOVI.forEach(function (p) { p.nuovo = true; });
+  CAPI = NUOVI.concat(CAPI);
 
   /* Seconde foto (stesso ordine di img) */
   var ALT2 = {
